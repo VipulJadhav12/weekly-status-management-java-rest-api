@@ -205,7 +205,7 @@ public class WeeklyStatusController {
 			return new ResponseEntity<>(apiResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		apiResponse = new ApiResponse(String.format(Configurations.DELETE_ALL_WEEKLY_STATUSES_BY_PROJECT_ON_SUCCESS, projectId), HttpStatus.INTERNAL_SERVER_ERROR);
+		apiResponse = new ApiResponse(String.format(Configurations.DELETE_ALL_WEEKLY_STATUSES_BY_PROJECT_ON_SUCCESS, projectId), HttpStatus.OK);
 		return new ResponseEntity<>(apiResponse, HttpStatus.OK);
 	}
 	
