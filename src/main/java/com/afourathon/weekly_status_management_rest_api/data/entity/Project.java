@@ -60,6 +60,7 @@ public class Project {
 	@Column(name = "manager_email")
 	private String managerEmail;
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "project_mailing_list", 
 			joinColumns = {
@@ -70,7 +71,7 @@ public class Project {
 			})
 	private Set<MailingList> mailingList = new HashSet<>();
 	
-	@JsonIgnore
+	
 	@OneToMany(targetEntity = WeeklyStatus.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "project_id", referencedColumnName = "project_id")
 	private List<WeeklyStatus> weeklyStatuses;
