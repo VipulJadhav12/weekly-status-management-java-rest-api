@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weeklystatusmgmt-be-deployment
+  labels:
+    app: weeklystatusmgmt-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weeklystatusmgmt-be
+  template:
+    metadata:
+      labels:
+        app: weeklystatusmgmt-be
+    spec:
+      volumes:
+        - name: "placeholder-values"
+          secret:
+            secretName: "afourathon-wsr"
+      containers:
+      - name: weeklystatusmgmt-be
+        image: $imageName
+        volumeMounts:
+          - name: "placeholder-values"
+            mountPath: "/app/env.values"
+            subPath: "env.values"
+        # imagePullPolicy: Never
+        ports:
+        - containerPort: 9292
+      #imagePullSecrets:
+      # kubernetes secret created for docker registry
+      #- name: private-registry-creds
+      #nodeName: k8s-worker-5

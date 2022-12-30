@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weeklystatusmgmt-be-service
+ # annotations:
+ #   service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    app: weeklystatusmgmt-be
+  ports:
+  - protocol: TCP
+    port: 9292
+    targetPort: 9292
+    nodePort: 30002
+  type: NodePort
