@@ -26,6 +26,7 @@ This API provides HTTP endpoints for the following operations:
 - Maven 3.0+
 - Spring Boot 2.7.0+
 - JUnit 5
+- Springfox Swagger2
 - Docker Engine
 - Latest MySQL 8.0+
 
@@ -111,6 +112,12 @@ and
 ```bash
   http://localhost:<PORT_NO>/api/v1/weekly_statuses
 ```
+
+## Documentation
+
+By default, the Swagger based JSON API documentation of this project will be available at
+
+- Swagger API Doc - [http://localhost:<PORT_NO>/swagger-ui/index.html](http://localhost:<PORT_NO>/swagger-ui/index.html)
 
 ## API Reference
 
