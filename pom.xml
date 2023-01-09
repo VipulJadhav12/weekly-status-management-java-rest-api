@@ -49,6 +49,13 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+		<!-- Add-on module to support JSR-310 (Java 8 Date & Time API) data types. -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.14.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

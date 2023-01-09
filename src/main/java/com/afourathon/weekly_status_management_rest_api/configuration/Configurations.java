@@ -1,7 +1,9 @@
 package com.afourathon.weekly_status_management_rest_api.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,9 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class Configurations implements WebMvcConfigurer {
-	
+
 	public static final String INVALID_PROJECT_ID = "Invalid Project ID. Project doesn't exists with ID: %d.";
-		
+
 	public static final String INVALID_WEEKLY_STATUS_ID = "Invalid Weekly-Status ID. Weekly-Status doesn't exists with ID: %d";
 	public static final String WEEKLY_STATUS_ADD_ON_SUCCESS = "New Weekly-Status {ID: %d} has been added successfully!";
 	public static final String WEEKLY_STATUS_ADD_ON_FAILED = "An error occured while adding new Weekly-Status into database.";
@@ -27,11 +29,23 @@ public class Configurations implements WebMvcConfigurer {
 
 	@Value("${cors.origin.url}")
 	private String CORS_ORIGIN_URL;
-	
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		System.out.println(CORS_ORIGIN_URL);
 		registry.addMapping("/**").allowedOrigins(CORS_ORIGIN_URL);
 	}
-	
+
+	// Adding a bean definition to enable HTTP request logging
+	@Bean
+	public CommonsRequestLoggingFilter logFilter() {
+		CommonsRequestLoggingFilter filter
+		= new CommonsRequestLoggingFilter();
+		filter.setIncludeQueryString(true);
+		filter.setIncludePayload(true);
+		filter.setMaxPayloadLength(10000);
+		filter.setIncludeHeaders(false);
+		filter.setAfterMessagePrefix("REQUEST DATA: ");
+		return filter;
+	}
+
 }
